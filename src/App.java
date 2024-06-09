@@ -3,15 +3,25 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
-        String s = "*".repeat(5);
+        String s = "*".repeat(16);
+        boolean inputIsValid = false;
 
-        System.out.print("Insert decimal number to convert: ");
-        int input = scan.nextInt();
+        do {
+            try {
+                System.out.print("Insert decimal number to convert: ");
+                int input = scan.nextInt();
 
-        System.out.printf("%s RESULT %s\n", s, s);
-        System.out.printf("| %-15s | %-18s |\n", "Octal", decimalToOctal(input));
-        System.out.printf("| %-15s | %-18s |\n", "Hexadecimal", decimalToHex(input));
-        System.out.printf("| %-15s | %-18s |\n", "Binary", decimalToBinary(input));
+                System.out.printf("%s RESULT %s\n", s, s);
+                System.out.printf("| %-15s | %-18s |\n", "Octal", decimalToOctal(input));
+                System.out.printf("| %-15s | %-18s |\n", "Hexadecimal", decimalToHex(input));
+                System.out.printf("| %-15s | %-18s |\n", "Binary", decimalToBinary(input));
+                inputIsValid = true;
+            } catch (Exception e) {
+                scan.nextLine();
+                System.out.println("Invalid Input. Please try again.");
+                inputIsValid = false;
+            }
+        } while (!inputIsValid);
 
         scan.close();
     }
